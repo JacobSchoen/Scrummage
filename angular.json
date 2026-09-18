@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "scrum-poker": {
+    "scrummage": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +56,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "scrum-poker:build:production"
+              "buildTarget": "scrummage:build:production"
             },
             "development": {
-              "buildTarget": "scrum-poker:build:development"
+              "buildTarget": "scrummage:build:development"
             }
           },
           "defaultConfiguration": "development"

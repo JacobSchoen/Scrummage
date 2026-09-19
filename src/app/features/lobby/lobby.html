@@ -1,0 +1,46 @@
+<div class="lobby">
+      <h1>Scrum Poker</h1>
+ 
+      <section>
+        <h2>Create a room</h2>
+        <form [formGroup]="createForm" (ngSubmit)="onCreate()">
+          <label>
+            Your name
+            <input formControlName="name" placeholder="Alex" />
+          </label>
+ 
+          @if (createForm.controls.name.invalid && createForm.controls.name.touched) {
+            <p class="error">Name is required (2+ characters).</p>
+          }
+ 
+          <button type="submit" [disabled]="createForm.invalid || creating()">
+            {{ creating() ? 'Creating…' : 'Create Room' }}
+          </button>
+        </form>
+      </section>
+ 
+      <hr />
+ 
+      <section>
+        <h2>Join a room</h2>
+        <form [formGroup]="joinForm" (ngSubmit)="onJoin()">
+          <label>
+            Room code
+            <input formControlName="roomCode" placeholder="ABC12" />
+          </label>
+ 
+          <label>
+            Your name
+            <input formControlName="name" placeholder="Jordan" />
+          </label>
+ 
+          @if (joinError()) {
+            <p class="error">{{ joinError() }}</p>
+          }
+ 
+          <button type="submit" [disabled]="joinForm.invalid || joining()">
+            {{ joining() ? 'Joining…' : 'Join Room' }}
+          </button>
+        </form>
+      </section>
+    </div>

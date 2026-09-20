@@ -1,0 +1,17 @@
+<div class="summary">
+    <h3>{{ round().ticket ?? 'Round results' }}</h3>
+
+    <ul class="votes">
+        @for (vote of round().votes; track vote.participantId) {
+        <li>{{ vote.name }}: <strong>{{ vote.value }}</strong></li>
+        }
+    </ul>
+
+    <div class="stats">
+        <span>Average: {{ round().average ?? '—' }}</span>
+        <span>Spread: {{ round().spread }}</span>
+        @if (round().consensus) {
+        <span class="consensus">🎉 Consensus!</span>
+        }
+    </div>
+</div>

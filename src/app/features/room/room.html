@@ -1,4 +1,41 @@
 <div style="font-family: system-ui; padding: 24px;">
-    <h2>Room: {{ roomId }}</h2>
-    <pre>{{ sync.room() | json }}</pre>
+    @if (sync.room(); as room) {
+    <h2>Room: {{ room.id }}</h2>
+    <p>Status: {{ room.status }}</p>
+
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px;">
+        @for (participant of room.participants; track participant.id) {
+        <app-participant-card [participant]="participant" [revealed]="room.status === 'revealed'" />
+        }
+    </div>
+
+    <div style="margin-top: 32px;">
+        <app-voting-deck [scale]="room.votingScale" [disabled]="room.status === 'revealed'"
+            (voteSelected)="onVoteSelected($event)" />
+    </div>
+
+    @if (isHost()) {
+    <div style="margin-top: 24px;">
+        @if (room.status === 'voting') {
+        <button type="button" (click)="onReveal()">Reveal</button>
+        } @else {
+        <button type="button" (click)="onNewRound()">New Round</button>
+        }
+    </div>
+    }
+
+    @if (room.status === 'revealed' && latestRound(); as round) {
+    <div style="margin-top: 24px;">
+        <app-reveal-summary [round]="round" />
+    </div>
+    }
+
+    <div style="margin-top: 32px;">
+        <h3 style="font-size: 14px; color: #888; margin-bottom: 8px;">History</h3>
+        <app-round-history [rounds]="room.history" />
+    </div>
+
+    } @else {
+    <p>No room loaded yet.</p>
+    }
 </div>

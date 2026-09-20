@@ -9,7 +9,7 @@ export abstract class RoomSyncService {
 
   abstract createRoom(name: string, scale?: VoteValue[]): Promise<string>;
   abstract joinRoom(roomId: string, name: string): Promise<void>;
-  abstract submitVote(value: VoteValue): void;
+  abstract submitVote(value: VoteValue | null): void;
   abstract revealVotes(): void;
   abstract startNewRound(ticket?: string): void;
   abstract leaveRoom(): void;

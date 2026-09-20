@@ -1,0 +1,39 @@
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    min-width: 100px;
+    text-align: center;
+    font-family: system-ui, sans-serif;
+}
+
+.card.voted {
+    border-color: #2ecc71;
+}
+
+.name {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.host-badge {
+    font-size: 10px;
+    color: #888;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 1px 4px;
+    margin-left: 4px;
+}
+
+.vote-slot {
+    font-size: 20px;
+}
+
+.checkmark {
+    color: #2ecc71;
+}
+
+.pending {
+    color: #aaa;
+}

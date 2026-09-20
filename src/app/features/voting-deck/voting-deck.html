@@ -1,0 +1,8 @@
+<div class="deck">
+    @for (value of scale(); track value) {
+    <button type="button" class="deck-card" [class.selected]="value === selectedValue()" [disabled]="disabled()"
+        (click)="onSelect(value)">
+        {{ value }}
+    </button>
+    }
+</div>

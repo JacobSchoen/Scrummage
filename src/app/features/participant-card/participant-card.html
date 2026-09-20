@@ -1,0 +1,18 @@
+<div class="card" [class.voted]="participant().hasVoted">
+      <div class="name">
+        {{ participant().name }}
+        @if (participant().isHost) {
+          <span class="host-badge">host</span>
+        }
+      </div>
+ 
+      <div class="vote-slot">
+        @if (revealed()) {
+          <span class="value">{{ participant().vote ?? '—' }}</span>
+        } @else if (participant().hasVoted) {
+          <span class="checkmark">✓</span>
+        } @else {
+          <span class="pending">…</span>
+        }
+      </div>
+    </div>

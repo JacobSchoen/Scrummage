@@ -1,0 +1,22 @@
+.history {
+        font-family: system-ui, sans-serif;
+        font-size: 13px;
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 400px;
+      }
+      .history th,
+      .history td {
+        text-align: left;
+        padding: 4px 8px;
+        border-bottom: 1px solid #eee;
+      }
+      .history th {
+        color: #888;
+        font-weight: 500;
+      }
+      .empty {
+        font-family: system-ui, sans-serif;
+        color: #888;
+        font-size: 13px;
+      }

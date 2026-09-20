@@ -1,0 +1,31 @@
+.deck {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.deck-card {
+    width: 48px;
+    height: 64px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.deck-card:hover:not(:disabled) {
+    transform: translateY(-4px);
+    border-color: #999;
+}
+
+.deck-card.selected {
+    border-color: #3498db;
+    background: #eaf4fc;
+}
+
+.deck-card:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

@@ -1,0 +1,26 @@
+.summary {
+        font-family: system-ui, sans-serif;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        max-width: 320px;
+      }
+      .votes {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0;
+      }
+      .votes li {
+        padding: 2px 0;
+      }
+      .stats {
+        display: flex;
+        gap: 16px;
+        margin-top: 12px;
+        font-size: 14px;
+        color: #555;
+      }
+      .consensus {
+        color: #2ecc71;
+        font-weight: 600;
+      }

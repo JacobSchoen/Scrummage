@@ -1,10 +1,11 @@
-import { Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 @Component({
   imports: [],
   selector: 'app-round-history',
   styleUrl: './round-history.css',
   templateUrl: './round-history.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RoundHistory {
   rounds = input.required<RoundResult[]>();

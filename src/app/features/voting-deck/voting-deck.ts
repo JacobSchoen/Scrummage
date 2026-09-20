@@ -1,10 +1,11 @@
-import { Component, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
 
 @Component({
   imports: [],
   selector: 'app-voting-deck',
   styleUrl: './voting-deck.css',
   templateUrl: './voting-deck.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VotingDeck {
   scale = input.required<VoteValue[]>();

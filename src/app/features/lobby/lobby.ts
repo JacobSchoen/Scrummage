@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RoomSyncService } from '../../services/room-sync.interface';
@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   selector: 'app-lobby',
   styleUrl: './lobby.css',
   templateUrl: './lobby.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Lobby {
   private fb = inject(FormBuilder);

@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RoomSyncService } from '../../services/room-sync.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,7 @@ import { RoundHistory } from '../round-history/round-history';
   selector: 'app-room',
   styleUrl: './room.css',
   templateUrl: './room.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Room {
   protected sync = inject(RoomSyncService);

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RoomSyncService } from '../../services/room-sync.interface';
 import { ReactiveFormsModule } from '@angular/forms';
+import { roomCodeFormatValidator } from '../../validators/roomCode.validator';
 
 @Component({
   imports: [ReactiveFormsModule],
@@ -25,7 +26,7 @@ export class Lobby {
   });
  
   protected joinForm = this.fb.nonNullable.group({
-    roomCode: ['', [Validators.required, Validators.minLength(4)]],
+    roomCode: ['', [Validators.required, roomCodeFormatValidator()]],
     name: ['', [Validators.required, Validators.minLength(2)]],
   });
  

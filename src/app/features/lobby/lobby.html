@@ -13,6 +13,15 @@
             <p class="error">Name is required (2+ characters).</p>
             }
 
+             <label>
+                Ticket Number
+                <input formControlName="ticketNumber" placeholder="SWF-123" />
+            </label>
+
+            @if (createForm.controls.name.invalid && createForm.controls.name.touched) {
+            <p class="error">Name is required (2+ characters).</p>
+            }
+
             <button type="submit" [disabled]="createForm.invalid || creating()">
                 {{ creating() ? 'Creating…' : 'Create Room' }}
             </button>

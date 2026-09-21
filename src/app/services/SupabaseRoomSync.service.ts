@@ -31,7 +31,7 @@ export class SupabaseRoomSyncService extends RoomSyncService {
   readonly room = this._room.asReadonly();
   readonly myParticipantId = this._myParticipantId.asReadonly();
 
-  async createRoom(name: string, scale: VoteValue[] = DEFAULT_VOTING_SCALE): Promise<string> {
+  async createRoom(name: string, currentTicket: string, scale: VoteValue[] = DEFAULT_VOTING_SCALE): Promise<string> {
     const hostId = randomId('p');
     const roomId = randomRoomCode();
 
@@ -53,6 +53,7 @@ export class SupabaseRoomSyncService extends RoomSyncService {
       participants: [host],
       history: [],
       createdAt: Date.now(),
+      currentTicket: currentTicket
     };
 
     const { error } = await supabase.from('rooms').insert({ id: roomId, data: newRoom });

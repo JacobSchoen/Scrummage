@@ -23,6 +23,7 @@ export class Lobby {
  
   protected createForm = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
+    ticketNumber: ['', [ Validators.minLength(2)]]
   });
  
   protected joinForm = this.fb.nonNullable.group({
@@ -35,8 +36,8 @@ export class Lobby {
  
     this.creating.set(true);
     try {
-      const { name } = this.createForm.getRawValue();
-      const roomId = await this.sync.createRoom(name);
+      const { name, ticketNumber } = this.createForm.getRawValue();
+      const roomId = await this.sync.createRoom(name, ticketNumber);
       this.router.navigate(['/room', roomId]);
     } finally {
       this.creating.set(false);

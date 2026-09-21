@@ -2,6 +2,7 @@
     @if (sync.room(); as room) {
     <h2>Room: {{ room.id }}</h2>
     <p>Status: {{ room.status }}</p>
+    <p>Current Ticket: {{ room.currentTicket }}</p>
 
     <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px;">
         @for (participant of room.participants; track participant.id) {

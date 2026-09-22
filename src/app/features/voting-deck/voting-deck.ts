@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, linkedSignal, output, signal } from '@angular/core';
 
 @Component({
   imports: [],
@@ -11,14 +11,12 @@ export class VotingDeck {
   scale = input.required<VoteValue[]>();
   disabled = input<boolean>(false);
 
-  /**
-   * Locally-selected value, purely for highlighting the chosen card.
-   * The parent/service is still the actual source of truth for whether the
-   * vote was submitted — this signal just drives the UI.
-   */
-  selectedValue = signal<VoteValue | null>(null);
-
   voteSelected = output<VoteValue | null>();
+
+  selectedValue = linkedSignal<VoteValue | null>(() => {
+    this.disabled();
+    return null;
+  });
 
   /**
    * Distributes rotation evenly across an arc so the fan looks right

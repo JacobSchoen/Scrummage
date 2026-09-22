@@ -1,30 +1,28 @@
 @if (rounds().length > 0) {
-      <table class="history">
+      <table class="w-full max-w-md border-collapse text-[13px]">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Ticket</th>
-            <th>Avg</th>
-            <th>Spread</th>
-            <th></th>
+            <th class="border-b border-white/10 px-2 py-1 text-left font-medium text-text-dim">#</th>
+            <th class="border-b border-white/10 px-2 py-1 text-left font-medium text-text-dim">Ticket</th>
+            <th class="border-b border-white/10 px-2 py-1 text-left font-medium text-text-dim">Avg</th>
+            <th class="border-b border-white/10 px-2 py-1 text-left font-medium text-text-dim">Spread</th>
+            <th class="border-b border-white/10 px-2 py-1 text-left font-medium text-text-dim"></th>
           </tr>
         </thead>
         <tbody>
           @for (round of orderedRounds(); track round.revealedAt) {
             <tr>
-              <td>{{ round.index }}</td>
-              <td>{{ round.ticket ?? '—' }}</td>
-              <td>{{ round.average ?? '—' }}</td>
-              <td>{{ round.spread }}</td>
-              <td>
-                @if (round.consensus) {
-                  <span title="Consensus">🎉</span>
-                }
+              <td class="border-b border-white/5 px-2 py-1 text-text">{{ round.index }}</td>
+              <td class="border-b border-white/5 px-2 py-1 text-text">{{ round.ticket ?? '—' }}</td>
+              <td class="border-b border-white/5 px-2 py-1 text-text">{{ round.average ?? '—' }}</td>
+              <td class="border-b border-white/5 px-2 py-1 text-text">{{ round.spread }}</td>
+              <td class="border-b border-white/5 px-2 py-1 text-gold">
+                @if (round.consensus) { <span title="Consensus">★</span> }
               </td>
             </tr>
           }
         </tbody>
       </table>
     } @else {
-      <p class="empty">No rounds yet.</p>
+      <p class="text-[13px] text-text-dim">No rounds yet.</p>
     }

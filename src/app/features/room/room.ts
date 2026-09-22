@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RoomSyncService } from '../../services/room-sync.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -18,6 +18,9 @@ import { RoundHistory } from '../round-history/round-history';
 export class Room {
   protected sync = inject(RoomSyncService);
   protected roomId = inject(ActivatedRoute).snapshot.paramMap.get('id');
+
+  protected justRevealed = signal(false);
+  protected isCopied = signal(false);
 
   isHost = computed(() => {
     const room = this.sync.room();
@@ -54,22 +57,39 @@ export class Room {
     if (!room) return [];
     const myId = this.sync.myParticipantId();
     const revealed = room.status === 'revealed';
- 
+
     return room.participants.map((p) =>
       revealed || p.id === myId ? p : { ...p, vote: null }
     );
   });
- 
+
   onVoteSelected(value: VoteValue | null): void {
     this.sync.submitVote(value);
   }
 
   onReveal(): void {
     this.sync.revealVotes();
+    this.justRevealed.set(true);
+    setTimeout(() => this.justRevealed.set(false), 210);
   }
 
   onNewRound(): void {
     this.sync.startNewRound();
+  }
+
+  async copyRoomId(): Promise<void> {
+    try {
+      if (this.roomId)
+      await navigator.clipboard.writeText(this.roomId);
+
+      this.isCopied.set(true);
+
+      setTimeout(() => {
+        this.isCopied.set(false);
+      }, 2000);
+    } catch(err) {
+      console.error(err)
+    }
   }
 
 }

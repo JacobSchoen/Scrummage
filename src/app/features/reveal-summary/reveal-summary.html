@@ -1,17 +1,36 @@
-<div class="summary">
-    <h3>{{ round().ticket ?? 'Round results' }}</h3>
-
-    <ul class="votes">
-        @for (vote of round().votes; track vote.participantId) {
-        <li>{{ vote.name }}: <strong>{{ vote.value }}</strong></li>
+<div class="max-w-xs rounded-2xl bg-panel-raised p-5 text-center">
+      <div class="font-display text-lg font-semibold text-gold">
+        {{ round().consensus ? 'Consensus!' : 'No consensus yet' }}
+      </div>
+ 
+      <div class="mt-1 text-[13px] text-text-dim">
+        @for (vote of round().votes; track vote.participantId; let last = $last) {
+          {{ vote.name }}: {{ vote.value }}{{ last ? '' : ' · ' }}
         }
-    </ul>
-
-    <div class="stats">
-        <span>Average: {{ round().average ?? '—' }}</span>
-        <span>Spread: {{ round().spread }}</span>
-        @if (round().consensus) {
-        <span class="consensus">🎉 Consensus!</span>
-        }
+      </div>
+ 
+      <div class="mt-3 flex justify-center gap-6 text-[13px] text-text-dim">
+        <div>
+          <strong class="block font-display text-xl font-semibold text-text">{{ round().average ?? '—' }}</strong>
+          average
+        </div>
+        <div>
+          <strong class="block font-display text-xl font-semibold text-text">{{ round().spread }}</strong>
+          spread
+        </div>
+      </div>
+ 
+      <div class="mt-5">
+        <div class="mb-1.5 flex justify-between text-[11px] text-text-dim">
+          <span>chaos meter</span>
+          <span>{{ chaosPercent() }}%</span>
+        </div>
+        <div class="h-2.5 overflow-hidden rounded-full bg-white/5">
+          <div
+            class="h-full rounded-full bg-gradient-to-r from-mint to-hot transition-[width] duration-300"
+            [class.animate-pulse]="chaosPercent() > 50"
+            [style.width.%]="chaosPercent()"
+          ></div>
+        </div>
+      </div>
     </div>
-</div>

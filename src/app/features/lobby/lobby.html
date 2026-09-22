@@ -1,58 +1,68 @@
-<div class="lobby">
-    <h1>Scrum Poker</h1>
+<div class="flex flex-col justify-center items-center">
+    <div class="m-5 p-2 flex items-center justify-center ">
+        <h1 class="text-6xl font-display font-semibold flex space-x-1">
+            <span class="inline-block animate-wiggle [animation-delay:0ms]">S</span>
+            <span class="inline-block animate-wiggle [animation-delay:50ms]">c</span>
+            <span class="inline-block animate-wiggle [animation-delay:100ms]">r</span>
+            <span class="inline-block animate-wiggle [animation-delay:150ms]">u</span>
+            <span class="inline-block animate-wiggle [animation-delay:200ms]">m</span>
+            <span class="inline-block animate-wiggle [animation-delay:250ms]">m</span>
+            <span class="inline-block animate-wiggle [animation-delay:300ms]">a</span>
+            <span class="inline-block animate-wiggle [animation-delay:350ms]">g</span>
+            <span class="inline-block animate-wiggle [animation-delay:400ms]">e</span>
+        </h1>
+    </div>
 
-    <section>
-        <h2>Create a room</h2>
-        <form [formGroup]="createForm" (ngSubmit)="onCreate()">
-            <label>
-                Your name
-                <input formControlName="name" placeholder="Alex" />
-            </label>
+    <div class="flex content-center">
+        <section class="m-5 border rounded-xl p-2">
+            <h2 class="content-center">Create a room</h2>
+            <form [formGroup]="createForm" (ngSubmit)="onCreate()">
+                <label>
+                    Your name
+                    <input formControlName="name" placeholder="Alex" />
+                </label>
 
-            @if (createForm.controls.name.invalid && createForm.controls.name.touched) {
-            <p class="error">Name is required (2+ characters).</p>
-            }
-
-             <label>
-                Ticket Number
-                <input formControlName="ticketNumber" placeholder="SWF-123" />
-            </label>
-
-            @if (createForm.controls.name.invalid && createForm.controls.name.touched) {
-            <p class="error">Name is required (2+ characters).</p>
-            }
-
-            <button type="submit" [disabled]="createForm.invalid || creating()">
-                {{ creating() ? 'Creating…' : 'Create Room' }}
-            </button>
-        </form>
-    </section>
-
-    <hr />
-
-    <section>
-        <h2>Join a room</h2>
-        <form [formGroup]="joinForm" (ngSubmit)="onJoin()">
-            <label>
-                Room code
-                <input formControlName="roomCode" placeholder="ABC12" />
-                @if (joinForm.controls.roomCode.hasError('roomCodeFormat') && joinForm.controls.roomCode.touched) {
-                <p class="error">Room codes are 5 letters/numbers, like ABC12.</p>
+                @if (createForm.controls.name.invalid && createForm.controls.name.touched) {
+                <p class="error">Name is required (2+ characters).</p>
                 }
-            </label>
 
-            <label>
-                Your name
-                <input formControlName="name" placeholder="Jordan" />
-            </label>
+                <label>
+                    Ticket Number
+                    <input formControlName="ticketNumber" placeholder="SWF-123" />
+                </label>
 
-            @if (joinError()) {
-            <p class="error">{{ joinError() }}</p>
-            }
+                <button type="submit" [disabled]="createForm.invalid || creating()">
+                    {{ creating() ? 'Creating…' : 'Create Room' }}
+                </button>
+            </form>
+        </section>
 
-            <button type="submit" [disabled]="joinForm.invalid || joining()">
-                {{ joining() ? 'Joining…' : 'Join Room' }}
-            </button>
-        </form>
-    </section>
+        <hr />
+
+        <section class="m-5 border rounded-xl p-2">
+            <h2>Join a room</h2>
+            <form [formGroup]="joinForm" (ngSubmit)="onJoin()">
+                <label>
+                    Room code
+                    <input formControlName="roomCode" placeholder="ABC12" />
+                    @if (joinForm.controls.roomCode.hasError('roomCodeFormat') && joinForm.controls.roomCode.touched) {
+                    <p class="error">Room codes are 5 letters/numbers, like ABC12.</p>
+                    }
+                </label>
+
+                <label>
+                    Your name
+                    <input formControlName="name" placeholder="Jordan" />
+                </label>
+
+                @if (joinError()) {
+                <p class="error">{{ joinError() }}</p>
+                }
+
+                <button type="submit" [disabled]="joinForm.invalid || joining()">
+                    {{ joining() ? 'Joining…' : 'Join Room' }}
+                </button>
+            </form>
+        </section>
+    </div>
 </div>

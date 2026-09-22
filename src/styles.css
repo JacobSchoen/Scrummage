@@ -1,3 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
 
-@import 'tailwindcss';
+@theme {
+  --color-bg: #120821;
+  --color-panel: #1f1030;
+  --color-panel-raised: #2a1642;
+
+  --color-gold: #ffcc33;
+  --color-gold-dark: #4a3a10;
+  --color-hot: #ff5470;
+  --color-hot-dark: #4a1520;
+  --color-cyan: #4dd8ff;
+  --color-cyan-dark: #10394a;
+  --color-mint: #7bff8a;
+  --color-mint-dark: #12401c;
+
+  --color-text: #f4eef9;
+  --color-text-dim: #b8a9cc;
+
+  --font-display: "Fredoka", sans-serif;
+  --font-body: "Space Grotesk", sans-serif;
+
+  --animate-wiggle: wiggle 0.5s ease-in-out infinite;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgb(255 204 51 / 0.08), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgb(255 84 112 / 0.10), transparent 45%);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px) rotate(-0.4deg); }
+  40% { transform: translateX(5px) rotate(0.4deg); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(3px); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease;
+}
+
+ @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg) translateY(0); }
+    50% { transform: rotate(3deg) translateY(-4px); }
+  }
+

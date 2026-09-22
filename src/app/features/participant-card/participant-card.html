@@ -1,18 +1,18 @@
-<div class="card" [class.voted]="participant().hasVoted">
-      <div class="name">
-        {{ participant().name }}
-        @if (participant().isHost) {
-          <span class="host-badge">host</span>
+<div class="flex flex-col items-center gap-2">
+      <div class="relative flex h-[58px] w-[58px] items-center justify-center rounded-full border-[3px] bg-panel font-display text-lg font-semibold text-text transition-all duration-300" [class]="tokenClasses()">
+        @if (revealed()) {
+          <span class="text-gold">{{ participant().vote ?? '—' }}</span>
+        } @else if (participant().hasVoted) {
+          <span class="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-mint font-body text-xs text-mint-dark">✓</span>
+        } @else {
+          <span class="text-white/30">…</span>
         }
       </div>
  
-      <div class="vote-slot">
-        @if (revealed()) {
-          <span class="value">{{ participant().vote ?? '—' }}</span>
-        } @else if (participant().hasVoted) {
-          <span class="checkmark">✓</span>
-        } @else {
-          <span class="pending">…</span>
+      <div class="flex items-center gap-1 text-xs font-medium text-text-dim">
+        {{ participant().name }}
+        @if (participant().isHost) {
+          <span class="rounded border border-gold/40 px-1 text-[9px] text-gold">host</span>
         }
       </div>
     </div>

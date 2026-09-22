@@ -1,66 +1,69 @@
-<div class="flex flex-col justify-center items-center">
-    <div class="m-5 p-2 flex items-center justify-center ">
-        <h1 class="text-6xl font-display font-semibold flex space-x-1">
-            <span class="inline-block animate-wiggle [animation-delay:0ms]">S</span>
-            <span class="inline-block animate-wiggle [animation-delay:50ms]">c</span>
-            <span class="inline-block animate-wiggle [animation-delay:100ms]">r</span>
-            <span class="inline-block animate-wiggle [animation-delay:150ms]">u</span>
-            <span class="inline-block animate-wiggle [animation-delay:200ms]">m</span>
-            <span class="inline-block animate-wiggle [animation-delay:250ms]">m</span>
-            <span class="inline-block animate-wiggle [animation-delay:300ms]">a</span>
-            <span class="inline-block animate-wiggle [animation-delay:350ms]">g</span>
-            <span class="inline-block animate-wiggle [animation-delay:400ms]">e</span>
-        </h1>
-    </div>
+<div class="flex min-h-screen flex-col items-center px-4 py-12">
+    <h1 class="mb-10 flex space-x-1 font-display text-6xl font-semibold text-gold">
+        <span class="inline-block animate-wiggle [animation-delay:0ms]">S</span>
+        <span class="inline-block animate-wiggle [animation-delay:50ms]">c</span>
+        <span class="inline-block animate-wiggle [animation-delay:100ms]">r</span>
+        <span class="inline-block animate-wiggle [animation-delay:150ms]">u</span>
+        <span class="inline-block animate-wiggle [animation-delay:200ms]">m</span>
+        <span class="inline-block animate-wiggle [animation-delay:250ms]">m</span>
+        <span class="inline-block animate-wiggle [animation-delay:300ms]">a</span>
+        <span class="inline-block animate-wiggle [animation-delay:350ms]">g</span>
+        <span class="inline-block animate-wiggle [animation-delay:400ms]">e</span>
+    </h1>
 
-    <div class="flex content-center">
-        <section class="m-5 border rounded-xl p-2">
-            <h2 class="content-center">Create a room</h2>
-            <form [formGroup]="createForm" (ngSubmit)="onCreate()">
-                <label>
+    <div class="flex flex-col items-start justify-center gap-6 sm:flex-row">
+        <section class="w-full flex-shrink-0 rounded-2xl border border-white/10 bg-panel p-6 sm:w-72">
+            <h2 class="mb-4 text-center font-display text-lg font-semibold text-text">Create a room</h2>
+            <form [formGroup]="createForm" (ngSubmit)="onCreate()" class="flex flex-col gap-4">
+                <label class="flex flex-col gap-1 text-xs font-medium text-text-dim">
                     Your name
-                    <input formControlName="name" placeholder="Alex" />
+                    <input formControlName="name" placeholder="Alex"
+                        class="w-full rounded-lg border border-white/10 bg-bg px-3 py-2 text-sm text-text placeholder-text-dim/50 outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/30" />
                 </label>
 
                 @if (createForm.controls.name.invalid && createForm.controls.name.touched) {
-                <p class="error">Name is required (2+ characters).</p>
+                <p class="-mt-2 text-xs text-hot">Name is required (2+ characters).</p>
                 }
 
-                <label>
-                    Ticket Number
-                    <input formControlName="ticketNumber" placeholder="SWF-123" />
+                <label class="flex flex-col gap-1 text-xs font-medium text-text-dim">
+                    Ticket number
+                    <input formControlName="ticketNumber" placeholder="SWF-123"
+                        class="w-full rounded-lg border border-white/10 bg-bg px-3 py-2 text-sm text-text placeholder-text-dim/50 outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/30" />
                 </label>
 
-                <button type="submit" [disabled]="createForm.invalid || creating()">
-                    {{ creating() ? 'Creating…' : 'Create Room' }}
+                <button type="submit" [disabled]="createForm.invalid || creating()"
+                    class="mt-2 rounded-full bg-gradient-to-b from-[#ffe27a] to-gold py-2.5 font-display text-sm font-semibold text-[#1a0e05] shadow-[0_3px_0_var(--color-gold-dark)] transition-transform duration-100 active:translate-y-0.5 active:shadow-[0_0_0_var(--color-gold-dark)] disabled:cursor-not-allowed disabled:opacity-50">
+                    {{ creating() ? 'Creating…' : 'Create room' }}
                 </button>
             </form>
         </section>
 
-        <hr />
-
-        <section class="m-5 border rounded-xl p-2">
-            <h2>Join a room</h2>
-            <form [formGroup]="joinForm" (ngSubmit)="onJoin()">
-                <label>
+        <section class="w-full flex-shrink-0 rounded-2xl border border-white/10 bg-panel p-6 sm:w-72">
+            <h2 class="mb-4 text-center font-display text-lg font-semibold text-text">Join a room</h2>
+            <form [formGroup]="joinForm" (ngSubmit)="onJoin()" class="flex flex-col gap-4">
+                <label class="flex flex-col gap-1 text-xs font-medium text-text-dim">
                     Room code
-                    <input formControlName="roomCode" placeholder="ABC12" />
-                    @if (joinForm.controls.roomCode.hasError('roomCodeFormat') && joinForm.controls.roomCode.touched) {
-                    <p class="error">Room codes are 5 letters/numbers, like ABC12.</p>
-                    }
+                    <input formControlName="roomCode" placeholder="ABC12"
+                        class="w-full rounded-lg border border-white/10 bg-bg px-3 py-2 text-sm text-text placeholder-text-dim/50 outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/30" />
                 </label>
 
-                <label>
+                @if (joinForm.controls.roomCode.hasError('roomCodeFormat') && joinForm.controls.roomCode.touched) {
+                <p class="-mt-2 text-xs text-hot">Room codes are 5 letters/numbers, like ABC12.</p>
+                }
+
+                <label class="flex flex-col gap-1 text-xs font-medium text-text-dim">
                     Your name
-                    <input formControlName="name" placeholder="Jordan" />
+                    <input formControlName="name" placeholder="Jordan"
+                        class="w-full rounded-lg border border-white/10 bg-bg px-3 py-2 text-sm text-text placeholder-text-dim/50 outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/30" />
                 </label>
 
                 @if (joinError()) {
-                <p class="error">{{ joinError() }}</p>
+                <p class="-mt-2 text-xs text-hot">{{ joinError() }}</p>
                 }
 
-                <button type="submit" [disabled]="joinForm.invalid || joining()">
-                    {{ joining() ? 'Joining…' : 'Join Room' }}
+                <button type="submit" [disabled]="joinForm.invalid || joining()"
+                    class="mt-2 rounded-full border-2 border-white/15 bg-panel py-2.5 font-display text-sm font-semibold text-text transition-transform duration-100 active:translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50">
+                    {{ joining() ? 'Joining…' : 'Join room' }}
                 </button>
             </form>
         </section>
